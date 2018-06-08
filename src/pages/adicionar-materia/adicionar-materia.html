@@ -1,0 +1,102 @@
+<ion-header>
+	<ion-navbar color="dark">
+		<button ion-button menuToggle >
+			<ion-icon name="menu" color="white" style="font-size:40px"></ion-icon>
+		</button>
+		<ion-col col-12><img src="logo_horizontal.png" width="100%"></ion-col>
+	</ion-navbar>
+</ion-header>
+<ion-content padding>
+	<ion-grid>
+
+		<ion-row>
+			<ion-col align="center" col-12><ion-title><span style="color:#f89d27"><strong>CRIAR</strong></span > <strong>MATÉRIA</strong></ion-title></ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col col-12><hr></ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col col-12>
+				<ion-label><strong>Nome</strong></ion-label>
+				<ion-input [(ngModel)]="nome"></ion-input>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col align="center" col-12><ion-title><strong>Dias da Semana</strong></ion-title></ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col col-4>
+				<ion-checkbox [(ngModel)]="seg"></ion-checkbox>
+				<span style="font-size:20px;">Seg</span>
+			</ion-col>
+			<ion-col col-4>
+				<ion-checkbox [(ngModel)]="ter"></ion-checkbox>
+				<span style="font-size:20px;">Ter</span>
+			</ion-col>
+			<ion-col col-4>
+				<ion-checkbox [(ngModel)]="dom"></ion-checkbox>
+				<span style="font-size:20px;">Dom</span>
+			</ion-col>
+		</ion-row>
+
+		<ion-row>
+			<ion-col col-4>
+				<ion-checkbox [(ngModel)]="qua"></ion-checkbox>
+				<span style="font-size:20px;">Qua</span>
+			</ion-col>
+			<ion-col col-4>
+				<ion-checkbox [(ngModel)]="quin"></ion-checkbox>
+				<span style="font-size:20px;">Quin</span>
+			</ion-col>
+			
+		</ion-row>
+
+		<ion-row>
+			<ion-col col-4>
+				<ion-checkbox [(ngModel)]="sex"></ion-checkbox>
+				<span style="font-size:20px;">Sex</span>
+			</ion-col>
+			<ion-col col-4>
+				<ion-checkbox [(ngModel)]="sab"></ion-checkbox>
+				<span style="font-size:20px;">Sab</span>
+			</ion-col>
+		</ion-row>
+
+		<ion-row>
+			<ion-col col-8>
+				<ion-label><strong>Nivel</strong></ion-label>
+				<ion-select style="width: " [(ngModel)]="nivel">
+					<ion-option value="1">Iniciante</ion-option>
+					<ion-option value="2">Intermediario</ion-option>
+					<ion-option value="3">Avançado</ion-option>
+				</ion-select>
+				
+			</ion-col>
+			<ion-col  col-4>
+				<ion-label style="margin-left:10px"><strong>Cores</strong></ion-label>
+				<ion-icon (click)="mostrarPopover()" id="buttonColor" name="color-palette"></ion-icon>
+			</ion-col>
+			
+		</ion-row>
+		<ion-row>
+			<ion-col col-6>
+				<ion-label >Questões &nbsp;<ion-icon name="help" class="help"  tooltip="Este é o número de questões desta matéria na prova do concurso que você irá prestar"  positionV="bottom"  duration="50000"></ion-icon></ion-label>
+				
+				<ion-input type="number" min="0" [(ngModel)]="questoes"></ion-input>
+			</ion-col>
+			
+			<ion-col col-6>
+				<ion-label >Peso &nbsp;<ion-icon name="help" class="help" tooltip="Este é o peso desta matéria na prova do concurso que você irá prestar" positionV="bottom" positionH="right"  duration="50000" ></ion-icon></ion-label>
+				<ion-input type="number"  min="0" max = "3"[(ngModel)]="peso"></ion-input>
+			</ion-col> 
+		</ion-row>
+		<ion-row>
+			<ion-col col-6>
+				<button ion-button color="confirm" full (click)="cadastrarMateria()"><strong>SALVAR</strong></button>
+			</ion-col>
+			<ion-col col-6 >
+				<button ion-button color="danger" full (click)="cancelar()"><strong>CANCELAR</strong></button>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+</ion-content>

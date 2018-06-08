@@ -1,0 +1,51 @@
+<ion-header>
+	<ion-navbar color="dark">
+		<button ion-button menuToggle>
+			<ion-icon name="menu" color="white" style="font-size:40px"></ion-icon>
+		</button>
+		
+			<ion-col col-12 item-start>
+				<img src="logo_horizontal.png" width="80%">
+				<button ion-button color="caixola" style="margin-top:-50px;border-radius:0px!important;" small (click)="abrirTutorial()" ><ion-icon name="md-bulb"></ion-icon></button>
+
+			</ion-col>
+					
+	</ion-navbar>
+</ion-header>
+
+
+
+<ion-content padding>
+	<span align="center">
+		<ion-title>
+			<strong>
+				<span style="color:#f89d27">MINHAS</span> MATÉRIAS
+			</strong>
+		</ion-title>
+	</span>
+
+	<span *ngIf="!listMaterias" align="center">
+		<ion-label>Nenhuma matéria cadastrada</ion-label>
+	</span>
+	
+	<ion-list  radio-group *ngFor="let materia of listMaterias; let l = last" [(ngModel)]="materiaSelecionada">
+		<ion-item class="card">
+			<ion-icon  item-left class="fa-book cores" (click)="relatorio(materia.nome,materia.cor)">{{l === true ? preencherCores():null}}</ion-icon>
+			<ion-label item-right (click)="relatorio(materia.nome,materia.cor)">
+				{{materia.nome}}
+			</ion-label>
+			<button ion-button color="danger" item-right (click)="deletarMateria(materia.nome)" >
+				<ion-icon name="trash"></ion-icon>
+			</button>
+			<button ion-button color="caixola" item-right (click)="editarMateria(materia)">
+				<ion-icon name="create"></ion-icon>
+			</button>
+
+		</ion-item>
+	</ion-list>
+</ion-content>
+<ion-footer>
+	<ion-fab bottom right>
+		<button ion-fab style="border-radius: 50%!important" color="caixola" (click)="cadastrarMateria()">+</button>
+	</ion-fab>
+</ion-footer>

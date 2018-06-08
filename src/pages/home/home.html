@@ -1,0 +1,145 @@
+<ion-header >
+	<ion-navbar color="dark" id="step0">
+			<button ion-button menuToggle>
+				<ion-icon name="menu" color="white" style="font-size:40px"></ion-icon>
+			</button>
+		<ion-col col-12><img src="logo_horizontal.png" width="100%"></ion-col>
+	</ion-navbar>
+</ion-header>
+<ion-content padding>
+	<ion-grid>
+		<ion-row>
+			<ion-col align="center" col-12><ion-title><span style="color:#f89d27">
+				<strong>RESUMO </strong></span > <strong>DIÁRIO</strong>
+			</ion-title></ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col col-12 align="center">
+				<ion-item>
+					<ion-icon name="arrow-up" color="confirm" item-left></ion-icon>
+					<ion-label color="confirm" item-right>MATERIA MAIS ESTUDADA</ion-label>
+				</ion-item>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col col-12>
+				<ion-item style="background: rgba(50,219,100,0.1);">
+					<ion-icon name="clock" color="confirm" item-left style="font-size:40px;margin-right:-20px!important">
+						<ion-label item-left style="font-size:12px;">
+							<strong>Tempo</strong>
+						</ion-label>	
+					</ion-icon>
+					<ion-label item-right align="center">
+						<strong>
+							{{materia_mais_estudada.tempoLabel}}
+							<br>{{materia_mais_estudada.nome}}
+						</strong>
+					</ion-label>						
+				</ion-item>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col col-12>
+				<ion-item style="background: rgba(50,219,100,0.1);">
+					<ion-icon name="md-create" color="confirm" item-left style="font-size:40px;margin-right:-53px!important">
+						<ion-label item-left style="font-size:12px;">
+							<strong>EXERCÍCIOS</strong>
+						</ion-label>	
+					</ion-icon>
+					<ion-label item-right align="center">
+						<strong>
+							{{materia_mais_acertos.porcentagemLabel}}
+							<br>{{materia_mais_acertos.nome}}
+							
+							
+						</strong>
+					</ion-label>						
+				</ion-item>
+			</ion-col>
+		</ion-row>
+		
+		<ion-row>
+			<ion-col col-12 align="center">
+				<ion-item>
+					<ion-icon name="arrow-up" color="danger" item-left></ion-icon>
+					<ion-label color="danger" item-right>MATERIA MENOS ESTUDADA</ion-label>
+				</ion-item>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col col-12>
+				<ion-item style="background: rgba(245,61,61,0.1);">
+					<ion-icon name="clock" color="danger" item-left style="font-size:40px;margin-right:-20px!important">
+						<ion-label item-left style="font-size:12px;">
+							<strong>TEMPO</strong>
+						</ion-label>	
+					</ion-icon>
+					<ion-label item-right align="center">
+						<strong>
+							{{materia_menos_estudada.tempoLabel}}
+							<br>{{materia_menos_estudada.nome}}
+						</strong>
+					</ion-label>						
+				</ion-item>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col col-12>
+				<ion-item style="background: rgba(245,61,61,0.1);">
+					<ion-icon name="md-create" color="danger" item-left style="font-size:40px;margin-right:-53px!important">
+						<ion-label item-left style="font-size:12px;">
+							<strong>EXERCÍCIOS</strong>
+						</ion-label>	
+					</ion-icon>
+					
+					<ion-label item-right align="center">
+						<strong>
+							{{materia_menos_acertos.porcentagemLabel}}
+							<br>
+							{{materia_menos_acertos.nome}}
+						</strong>
+					</ion-label>						
+				</ion-item>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col align="center" col-12><ion-title><span style="color:#f89d27">
+				<strong>ATIVIDADES </strong></span > <strong>PREVISTAS</strong>
+			</ion-title></ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col col-12 align="center">
+				<ion-icon name="calendar" style="font-size: 20px">
+					{{dataAtual}}
+				</ion-icon>
+
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col col-12>
+				<button ion-button color="confirm" item-right style="height:40px;border-radius: 0px!important" full (click)="iniciarEstudos()">INICIAR ESTUDOS</button>
+			</ion-col>
+		</ion-row>
+		<ion-row *ngIf="!listMaterias">
+			<ion-col col-12>
+				<ion-label>Nenhuma matéria cadastrada</ion-label>
+			</ion-col>
+		</ion-row>
+
+		<ion-list  *ngFor="let materia of listMaterias; let l = last" >
+			<ion-row>
+				<ion-col col-12>
+					<ion-item >
+						<ion-icon  item-left class="fa-book cores" >{{l === true ? preencherCores():null}}</ion-icon>
+						<ion-label item-right>
+							{{materia.nome}}
+						</ion-label>
+					</ion-item>
+				</ion-col>
+			</ion-row>
+		</ion-list>
+
+
+
+	</ion-grid>
+</ion-content>

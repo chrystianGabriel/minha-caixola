@@ -1,0 +1,25 @@
+<ion-slides pager="true">
+
+	<span *ngFor="let img of arrayImgs">
+		<ion-slide>
+			<img src="{{img.src}}" />
+		</ion-slide>
+	</span>
+
+	<ion-slide>
+		<ion-grid>
+			<ion-row>
+				<ion-col>
+					<button ion-button color="secondary" (click)="finalizarTutorial()">OK!ENTENDI</button>
+				</ion-col>
+			</ion-row>
+			<ion-row>
+				<ion-col>
+					<img src="{{ultima_img}}" />
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+
+	</ion-slide>
+
+</ion-slides>

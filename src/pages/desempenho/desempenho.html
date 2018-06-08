@@ -1,0 +1,65 @@
+<ion-header hideWhen="landscape">
+
+<ion-navbar color="dark" hideWhen="landscape">
+	<button ion-button menuToggle>
+		<ion-icon name="menu" color="white" style="font-size:40px"></ion-icon>
+	</button>
+	<ion-col col-12><img src="logo_horizontal.png" width="100%"></ion-col>
+</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<span *ngIf ="desempenhoDiario == undefined" align="center">
+		<ion-label>
+			Nenhum Estudo cadastrado!
+		</ion-label>
+	</span>
+	<span *ngIf = "desempenhoDiario != undefined">
+		<ion-card class="grafico">
+			<ion-card-header>
+				<strong>DESEMPENHO<span style="color:#f89d27"> DIARIO</span> </strong>
+				<hr>
+			</ion-card-header>
+			
+			<ion-card-content>
+				<canvas #graficoDiario></canvas>
+				<ion-item class="carregamento">
+					<ion-spinner name="bubbles"  item-left></ion-spinner>
+					<ion-label item-right>CARREGANDO DADOS</ion-label>
+				</ion-item>
+			</ion-card-content>
+		</ion-card>
+
+		<ion-card class="grafico">
+
+			<ion-card-header>
+				<strong> DESEMPENHO<span style="color:#f89d27"> SEMANAL</span> </strong>
+				<hr>
+			</ion-card-header>
+			<ion-card-content>
+				<canvas #graficoSemanal></canvas>
+				<ion-item class="carregamento">
+					<ion-spinner name="bubbles"  item-left></ion-spinner>
+					<ion-label item-right>CARREGANDO DADOS</ion-label>
+				</ion-item>
+
+			</ion-card-content>
+		</ion-card>
+
+		<ion-card class="grafico">
+			<ion-card-header>
+				<strong> DESEMPENHO<span style="color:#f89d27"> GERAL</span> </strong>
+				<hr>
+			</ion-card-header>
+			<ion-card-content>
+				<canvas #graficoGeral></canvas>
+				<ion-item class="carregamento">
+					<ion-spinner name="bubbles"  item-left></ion-spinner>
+					<ion-label item-right>CARREGANDO DADOS</ion-label>
+				</ion-item>
+			</ion-card-content>
+		</ion-card>
+	</span>
+
+
+</ion-content>

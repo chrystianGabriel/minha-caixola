@@ -1,0 +1,106 @@
+// http://ionicframework.com/docs/theming/
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+$fa-font-path: "../assets/fonts" !default; 
+@import "font-awesome"; 
+i[class^="fa-"], ion-icon[class^="fa-"] {    
+	font-family: "FontAwesome" !important;
+}
+.toastSucesso{
+
+	text-align: center;
+	font-weight: 900;
+	div{
+		background: #00CA66;
+	}
+}
+
+.toastErro{
+	text-align: center;
+	font-weight: 900;
+	div{
+		background: #CA0000;
+	}
+}
+
+ion-input{
+	border: 1px dashed black;
+}
+ion-select{
+	max-width: 100%!important;
+	border: 1px dashed black;
+}
+ion-datetime{
+	border: 1px dashed black;
+}
+ion-textarea{
+	border: 1px dashed black;
+	height: 150px;
+}
+button{
+	border-radius: 15px!important;
+}
+.alerta{
+	button{
+		border-radius: 15px;
+		margin: 5px;
+		color:white!important;
+	}
+	button:nth-child(1){
+		background: #32db64!important;
+	}
+	button:nth-child(2){
+		background: #f53d3d!important;
+	}
+}
+.cores{
+	font-size: 40px!important;
+}
+.meta{
+	width: 100%!important;
+	div{
+		width: 100%!important;
+	}
+	input{
+		width: 48%!important;
+		white-space: nowrap!important;
+		border: 1px dashed black;
+		float: left;
+	}
+	input:nth-child(1){
+		margin-left: 4px!important;
+	}
+	button{
+		border-radius: 15px;
+		margin: 5px;
+		color:white!important;
+		margin-top:15px;
+	}
+	button:nth-child(1){
+		background: #32db64!important;
+	}
+	button:nth-child(2){
+		background: #f53d3d!important;
+	}
+	::-webkit-input-placeholder{
+		color:black;
+	}
+	.tooltip-box{
+		color: red!important;
+		background: red!important;
+	}
+}
+
+
+

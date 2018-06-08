@@ -1,0 +1,20 @@
+<ion-content padding>
+	<ion-grid>
+		<ion-row>
+			<ion-col col-12>
+				<ion-label>Mensagem</ion-label>
+				<textarea [(ngModel)]="mensagem"></textarea>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col col-6="">
+				<button ion-button full="" color="confirm" (click)="enviarMensagem()">ENVIAR MENSAGEM</button>
+				
+			</ion-col>
+			<ion-col col-6="">
+				<button ion-button full="" color="danger">CANCELAR</button>
+				
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+</ion-content>

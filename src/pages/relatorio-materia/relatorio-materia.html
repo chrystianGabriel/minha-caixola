@@ -1,0 +1,73 @@
+<ion-header>
+	<ion-navbar color="dark">
+			<ion-col col-12 item-start>
+				<img src="logo_horizontal.png" width="80%">
+				<button ion-button color="caixola" style="margin-top:-50px;border-radius: 0px!important" small (click)="abrirTutorial()"><ion-icon name="md-bulb"></ion-icon></button>
+			</ion-col>	
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<ion-grid>
+		<ion-row>
+			<ion-col col-12 >
+				<span align="center">
+					<ion-title>
+						<strong>
+							<span style="color:#f89d27">{{nome_materia}}</span>-RELATÓRIO
+						</strong>
+					</ion-title>
+				</span>
+			</ion-col>
+		</ion-row>
+		<table class="table">
+			<thead>
+				<ion-row  class="destacar" style="color:white">
+					<ion-col col-3 class="linha" >Data</ion-col>
+					<ion-col col-3 class="linha">Tempo</ion-col>
+					<ion-col col-3 class="linha">Tipo</ion-col>
+					<ion-col col-3 class="linha">Tema</ion-col>
+				</ion-row>
+			</thead>
+			<tbody>
+				<ion-row *ngFor="let estudo of array_estudos" (click)="verDescricao(estudo.descricao)">
+					<ion-col col-4 class="linha" >{{estudo.data}}</ion-col>
+					<ion-col col-3 class="linha" >{{estudo.tempo}}</ion-col>
+					<ion-col col-2 class="linha" >{{estudo.tipo}}</ion-col>
+					<ion-col col-3 class="linha" >{{estudo.tema}}</ion-col>
+				</ion-row>
+				<ion-row>
+					<ion-col col-2   class="destacar"></ion-col>
+					<ion-col col-2  class="destacar"></ion-col>
+					<ion-col col-6  class="destacar" style="color:white">
+						Tempo Total: {{tempoTotal}}
+					</ion-col>
+					<ion-col col-2 class="destacar"></ion-col>
+				</ion-row>
+			</tbody>
+		</table>
+	</ion-grid>
+	<!-- <ion-grid>
+		<ion-row>
+			<ion-col col-12>
+				<ion-label style="font-size: 20px;" align="center">
+					<strong>{{nome_materia}}</strong> - <strong><span style="font-size: 15px"> <span style="color:#f89d27">ESTUDOS</span> REGISTRADOS</span></strong>
+					<br>
+				</ion-label>
+			</ion-col>
+		</ion-row>
+		<hr>
+		<span *ngFor="let estudo of array_estudos">
+			<ion-row class="linha">
+				<ion-col col-4>{{estudo.data}}</ion-col>
+				<ion-col col-3>{{estudo.tempo}}</ion-col>
+				<ion-col col-5><strong>{{estudo.tipo}}: </strong> &nbsp;{{estudo.tema}}</ion-col>
+			</ion-row>
+		</span>
+		<ion-row>
+			<ion-col col-12 *ngIf="array_estudos == false">
+				<span>OPS! VOCÊ AINDA NÃO ESTUDOU ESTÁ MATERIA!</span>
+			</ion-col>
+		</ion-row>
+	</ion-grid> -->
+</ion-content>

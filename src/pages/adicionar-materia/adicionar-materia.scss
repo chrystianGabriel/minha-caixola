@@ -1,0 +1,32 @@
+page-adicionar-materia {
+	
+	ion-input{
+		border: 2px dashed #939393;
+		border-radius: 5px;
+	}
+	ion-select{
+		border: 2px dashed #939393;
+		border-radius: 5px;
+		max-width: 100%!important
+		
+	}
+	#buttonColor{
+		font-size:  55px;
+		margin-left: 10px;
+		
+	}
+	button{
+		margin-radius: 15px!important;
+	}
+	.help{
+		background: #488aff;
+		border-radius: 4px;
+		color: white;
+		width: 25px;
+		height: 25px;
+		text-align: center;
+		padding: 3px;
+		box-shadow: 2px 2px 2px 2px solid black;
+		z-index: 9999999999999;
+	}
+}

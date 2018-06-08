@@ -1,0 +1,38 @@
+<ion-menu [content]="content"  id="step1">
+	<ion-header>
+		<ion-navbar color="dark">
+			<img src="logo_horizontal.png" alt="">
+		</ion-navbar>
+	</ion-header>
+	<ion-content>
+		<ion-list>
+			<ion-item menuClose (click)="abrirPagina(inicio)">
+				<ion-icon name="home"  item-left></ion-icon>
+				<ion-label>INICIO</ion-label>
+			</ion-item>
+
+			<ion-item menuClose (click)="abrirPagina(gravar_estudo)">
+				<ion-icon name="play"  item-left></ion-icon>
+				<ion-label>INICIAR ESTUDOS</ion-label>
+			</ion-item>
+			<ion-item menuClose (click)="cadastrarMeta()">
+				<ion-icon name="md-list-box"  item-left></ion-icon>
+				<ion-label>META SEMANAL</ion-label>
+			</ion-item>
+			<ion-item menuClose (click)="abrirPagina(minhasMateria)">
+				<ion-icon name="ios-book"  item-left ></ion-icon>
+				<ion-label >MINHAS MATERIAS</ion-label>
+			</ion-item>
+			<ion-item menuClose (click)="abrirPagina(horarios)" >
+				<ion-icon name="md-timer"  item-left></ion-icon>
+				<ion-label>MINHAS METAS</ion-label>
+			</ion-item>
+			<ion-item menuClose (click)="abrirPagina(desempenho)">
+				<ion-icon name="stats"  item-left></ion-icon>
+				<ion-label>MEU DESEMPENHO</ion-label>
+			</ion-item>
+			
+		</ion-list>
+	</ion-content>
+</ion-menu>
+<ion-nav #content [root]="rootPage"></ion-nav>

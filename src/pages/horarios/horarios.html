@@ -1,0 +1,101 @@
+<ion-header>
+	<ion-navbar color="dark">
+		<button ion-button menuToggle>
+			<ion-icon name="menu" color="white" style="font-size:40px"></ion-icon>
+		</button>
+		<ion-col col-12><img src="logo_horizontal.png" width="100%"></ion-col>
+	</ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+	
+	<ion-grid>
+		<ion-row>
+			<ion-col col-12 align="center">
+				<ion-title><strong><span style="color:#f89d27">MINHAS</span> METAS</strong></ion-title>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col col-12>
+				<ion-select [(ngModel)]="dia_semana" (ionChange)="mudarDia()">
+					<ion-option value="0">DOMINGO</ion-option>
+					<ion-option value="1">SEGUNDA-FEIRA</ion-option>
+					<ion-option value="2">TERÇA-FEIRA</ion-option>
+					<ion-option value="3">QUARTA-FEIRA</ion-option>
+					<ion-option value="4">QUINTA-FEIRA</ion-option>
+					<ion-option value="5">SEXTA-FEIRA</ion-option>
+					<ion-option value="6">SABADO</ion-option>
+					
+				</ion-select>
+			</ion-col>
+		</ion-row>
+		
+		<ion-row>
+			<ion-col col-12="">
+				<button ion-button full color="confirm" (click)="adicionarMateria()">
+					<strong>
+						<ion-icon name="add"></ion-icon>
+						&nbsp;MATERIA
+					</strong>
+				</button>
+			</ion-col>
+		</ion-row>
+		<br>
+		<span *ngIf="!array_materias && revisoes.length == 0" aling="center">
+			<ion-label>
+				Nenhuma atividade agendada.
+			</ion-label>	
+		</span>
+		<span *ngIf="revisoes.length > 0">
+			<ion-row>
+				<ion-col col-12 align="center">
+					<ion-title><strong><span style="color:#f89d27">Revisões</span> Agendadas</strong></ion-title>
+				</ion-col>
+			</ion-row>
+			<span *ngFor="let revisao of revisoes">
+				<ion-row class="linha">
+					<ion-col col-4><strong>Nome:</strong> {{revisao.materia}}</ion-col>
+					<ion-col col-4><strong>Tema:</strong> {{revisao.tema}}</ion-col>
+					<ion-col col-3><strong>Tempo: </strong> {{revisao.tempo}} </ion-col>
+				</ion-row>
+			</span>
+		</span>
+		<span *ngIf="array_materias != false">	
+			<ion-row>
+				<ion-col col-12 align="center">
+					<ion-title><strong><span style="color:#f89d27">Materias</span> Agendadas</strong></ion-title>
+				</ion-col>
+			</ion-row>
+			<ion-row>
+				<ion-col col-12>
+					<span *ngFor="let materia of array_materias; let l = last">
+						<ion-card class="card" >
+							<ion-card-header>
+								<ion-item>
+									<ion-icon  item-left class="fa-book cores" > {{l === true ? preencherCores():null}}</ion-icon>
+									<ion-label item-right >
+										<strong>{{materia.nome}}</strong>
+									</ion-label>
+
+									<button ion-button color="danger" small item-right style="width:40px" (click)="removerMateria(materia.nome)">
+										<ion-icon name="trash"></ion-icon>
+									</button>
+								</ion-item>
+
+
+							</ion-card-header>
+							<ion-item>
+								<span item-left style="width:80px!important;"><strong>Nivel: {{materia.nivel}}</strong></span>
+								<ion-label item-right><strong>Meta: {{materia.meta}}</strong></ion-label>
+							</ion-item>
+
+						</ion-card>
+
+					</span>
+				</ion-col>
+			</ion-row>
+		</span>
+
+	</ion-grid>
+</ion-content>

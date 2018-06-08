@@ -1,0 +1,59 @@
+<ion-header>
+	<ion-navbar color="dark">
+		<button ion-button menuToggle>
+			<ion-icon name="menu" color="white" style="font-size:40px"></ion-icon>
+		</button>
+		<ion-col col-12><img src="logo_horizontal.png" width="100%"></ion-col>
+	</ion-navbar>
+</ion-header>
+<ion-content padding>
+	<ion-grid>
+		<ion-row>
+			<ion-col align="center" col-12><ion-title><span style="color:#f89d27"><strong>EDITAR</strong></span > <strong>MATERIA</strong></ion-title></ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col col-12><hr></ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col col-12>
+				<ion-label><strong>Nome</strong></ion-label>
+				<ion-input [(ngModel)]="nome"></ion-input>
+			</ion-col>
+		</ion-row>
+
+		<ion-row>
+			<ion-col col-8>
+				<ion-label><strong>Nivel</strong></ion-label>
+				<ion-select style="width: " [(ngModel)]="nivel">
+					<ion-option value="1">Iniciante</ion-option>
+					<ion-option value="2">Intermediario</ion-option>
+					<ion-option value="3">Avançado</ion-option>
+				</ion-select>
+				
+			</ion-col>
+			<ion-col  col-4>
+				<ion-label style="margin-left:10px"><strong>Cores</strong></ion-label>
+				<ion-icon (click)="mostrarPopover()" id="buttonColor" name="color-palette"></ion-icon>
+			</ion-col>
+			
+		</ion-row>
+		<ion-row>
+			<ion-col col-6>
+				<ion-label >Questões</ion-label>
+				<ion-input type="number" [(ngModel)]="questoes"></ion-input>
+			</ion-col>
+			<ion-col col-6>
+				<ion-label>Peso</ion-label>
+				<ion-input type="number" [(ngModel)]="peso"></ion-input>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col col-6 >
+				<button ion-button color="confirm" full (click)="salvarAlteracoes()"><strong>SALVAR</strong></button>
+			</ion-col>
+			<ion-col col-6 >
+				<button ion-button color="danger" full (click)="cancelar()"><strong>CANCELAR</strong></button>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+</ion-content>
