@@ -29,6 +29,7 @@ import { TooltipsModule } from 'ionic-tooltips';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {IntroPage} from "../pages/intro/intro";
 import {MateriaDescricaoPage} from "../pages/materia-descricao/materia-descricao";
+import { CodePush } from '@ionic-native/code-push';
 Pro.init('45f3d442', {
   appVersion: '1.0.0'
 })
@@ -115,7 +116,8 @@ export class MyErrorHandler implements ErrorHandler {
     FirebaseProvider,
     LocalNotifications,
     Keyboard,
-     OneSignal
+     OneSignal,
+     CodePush
   ]
 })
 export class AppModule {}

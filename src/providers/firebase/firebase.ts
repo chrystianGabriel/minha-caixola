@@ -456,7 +456,38 @@ export class FirebaseProvider {
         this.cadastrarHorarios(4,"Informática");
         this.cadastrarHorarios(5,"Informática");
         this.cadastrarHorarios(6,"Informática");
+        this.cadastrarMateria({nome:"Direito Processual Penal",
+          nivel:1,
+          cor:"#CC0000",questoes:20,peso:2})
+        this.cadastrarHorarios(0,"Direito Processual Penal");
+        this.cadastrarHorarios(1,"Direito Processual Penal");
+        this.cadastrarHorarios(2,"Direito Processual Penal");
+        this.cadastrarHorarios(3,"Direito Processual Penal");
+        this.cadastrarHorarios(4,"Direito Processual Penal");
+        this.cadastrarHorarios(5,"Direito Processual Penal");
+        this.cadastrarHorarios(6,"Direito Processual Penal");
+         this.cadastrarMateria({nome:"Direito Processual Civil",
+          nivel:1,
+          cor:"#00CC00",questoes:20,peso:2})
+        this.cadastrarHorarios(0,"Direito Processual Civil");
+        this.cadastrarHorarios(1,"Direito Processual Civil");
+        this.cadastrarHorarios(2,"Direito Processual Civil");
+        this.cadastrarHorarios(3,"Direito Processual Civil");
+        this.cadastrarHorarios(4,"Direito Processual Civil");
+        this.cadastrarHorarios(5,"Direito Processual Civil");
+        this.cadastrarHorarios(6,"Direito Processual Civil");
+        this.cadastrarMateria({nome:"Direito Civil",
+          nivel:1,
+          cor:"#CC33CC",questoes:20,peso:2})
+        this.cadastrarHorarios(0,"Direito Civil");
+        this.cadastrarHorarios(1,"Direito Civil");
+        this.cadastrarHorarios(2,"Direito Civil");
+        this.cadastrarHorarios(3,"Direito Civil");
+        this.cadastrarHorarios(4,"Direito Civil");
+        this.cadastrarHorarios(5,"Direito Civil");
+        this.cadastrarHorarios(6,"Direito Civil");
         sucesso(true)
+     
       })
       .catch((error)=>{
         if(error.code == "auth/invalid-email"){

@@ -17,6 +17,7 @@ import {DesempenhoPage} from "../pages/desempenho/desempenho";
 import {FirebaseProvider} from "../providers/firebase/firebase";
 import {PerfilAdminPage} from "../pages/perfil-admin/perfil-admin";
 import {IntroPage} from "../pages/intro/intro";
+import { CodePush, InstallMode, SyncStatus } from '@ionic-native/code-push';
 declare var cronometro:any;
 declare var window:any;
 @Component({
@@ -31,7 +32,7 @@ export class MyApp {
   gravar_estudo = GravarEstudosPage
   desempenho = DesempenhoPage
 
-  constructor(private modalCtrl:ModalController,private database:FirebaseProvider,private alertCtrl:AlertController,keyboard: Keyboard,platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  constructor(private codePush: CodePush,private modalCtrl:ModalController,private database:FirebaseProvider,private alertCtrl:AlertController,keyboard: Keyboard,platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -39,6 +40,7 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
       this.database.receberMensagem();
+      this.executarCodePush();
       
 
 
@@ -57,6 +59,26 @@ export class MyApp {
       alertAux.present()
     }
   }
+  executarCodePush() {
+    
+     this.codePush.sync({
+      updateDialog: {
+       appendReleaseDescription: true,
+       descriptionPrefix: "\n\nChange log:\n"   
+      },
+      installMode: InstallMode.IMMEDIATE
+   }).subscribe(
+     (data) => {
+      console.log('CODE PUSH SUCCESSFUL: ' + data);
+      
+     },
+     (err) => {
+      console.log('CODE PUSH ERROR: ' + err);
+      
+     }
+   );
+  }
+
   async cadastrarMeta(){
     let ref = this;
     let tempo:any = await this.database.getMetaSemanal();
