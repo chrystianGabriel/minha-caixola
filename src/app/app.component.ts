@@ -18,6 +18,7 @@ import {FirebaseProvider} from "../providers/firebase/firebase";
 import {PerfilAdminPage} from "../pages/perfil-admin/perfil-admin";
 import {IntroPage} from "../pages/intro/intro";
 import { CodePush, InstallMode, SyncStatus } from '@ionic-native/code-push';
+import { MenuController } from 'ionic-angular';
 declare var cronometro:any;
 declare var window:any;
 @Component({
@@ -32,8 +33,9 @@ export class MyApp {
   gravar_estudo = GravarEstudosPage
   desempenho = DesempenhoPage
 
-  constructor(private codePush: CodePush,private modalCtrl:ModalController,private database:FirebaseProvider,private alertCtrl:AlertController,keyboard: Keyboard,platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  constructor(public menu:MenuController,private codePush: CodePush,private modalCtrl:ModalController,private database:FirebaseProvider,private alertCtrl:AlertController,keyboard: Keyboard,platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
+      this.menu.swipeEnable(false,"menu")
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       keyboard.disableScroll(true);
@@ -47,7 +49,6 @@ export class MyApp {
     });
   }
   abrirPagina(pagina){
-   
     if(cronometro == undefined){
       this.rootPage = pagina
     }else{

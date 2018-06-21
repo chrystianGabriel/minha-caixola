@@ -6,6 +6,7 @@ import { AdicionarMateriaPage } from '../adicionar-materia/adicionar-materia';
 import {PerfilAdminPage} from "../perfil-admin/perfil-admin";
 import {IntroPage} from "../intro/intro";
 
+
 /**
  * Generated class for the LoginPage page.
  *
@@ -24,6 +25,7 @@ import {IntroPage} from "../intro/intro";
  	constructor(private database:FirebaseProvider,private loadCtrl:LoadingController,private toast:ToastController,public navCtrl: NavController, public navParams: NavParams) {
  		this.email = ""
  		this.senha = ""
+
  	}
  	ionViewDidLoad(){
  	}
@@ -45,6 +47,7 @@ import {IntroPage} from "../intro/intro";
  				});
  				load.dismiss();
  				toast.present();
+
  				let uid = ref.database.getUsuario();
  				if(uid == "0PbBHDIWiQTUXMW1MkHduD9fPxp1"){
  					ref.navCtrl.push(PerfilAdminPage)
