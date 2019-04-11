@@ -1,9 +1,14 @@
 <ion-header>
 	<ion-navbar color="dark">
-		<button ion-button menuToggle>
-			<ion-icon name="menu" color="white" style="font-size:40px"></ion-icon>
-		</button>
-		<ion-col col-12><img src="logo_horizontal.png" width="100%"></ion-col>
+		<ion-row>
+			<ion-col col-2>
+				<button (click)="fecharModal()" ion-button color="dark" large style="border-radius: 0px!important;margin-top:10px"><ion-icon name="arrow-back"></ion-icon></button>
+			</ion-col>
+			<ion-col col-10 item-start>
+				<img src="logo_horizontal.png" width="100%">
+			</ion-col>	
+			
+		</ion-row>
 	</ion-navbar>
 </ion-header>
 <ion-content padding>

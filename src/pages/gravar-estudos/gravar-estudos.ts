@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,ToastController,AlertController,ViewController  } from 'ionic-angular';
 import {FirebaseProvider} from '../../providers/firebase/firebase';
 import { LocalNotifications } from '@ionic-native/local-notifications';
-
+import { BackgroundMode } from '@ionic-native/background-mode';
 /**
  * Generated class for the GravarEstudosPage page.
  *
@@ -32,7 +32,7 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
  	private alerta;
  	private exercicios;
  	private acertos;
- 	constructor(private localNotifications: LocalNotifications,private viewCtrl:ViewController,private alertCtrl:AlertController,private database:FirebaseProvider,public toastCtrl:ToastController,public navCtrl: NavController, public navParams: NavParams) {
+ 	constructor(private backgroundMode: BackgroundMode,private localNotifications: LocalNotifications,private viewCtrl:ViewController,private alertCtrl:AlertController,private database:FirebaseProvider,public toastCtrl:ToastController,public navCtrl: NavController, public navParams: NavParams) {
 
  		this.tipoEstudo = "teoria"
  		this.materia = "0"
@@ -307,11 +307,12 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
  					})
  					alertAux.present()
  				}else{
+ 					let tempo = new Date(new Date().getTime() + Number(dados.minutos)*60000);
  					let alarme = {
  						id: 1,
  						title:"Caixola Estudos",
  						text: 'Fim dos Estudos!!',
- 						trigger: {at: new Date(new Date().getTime() + Number(dados.minutos)*60000)},
+ 						trigger: {at: tempo},
  						vibrate: true
 
 
@@ -326,7 +327,11 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
  					});
  					toast.present()
  					.then(()=>{
+ 						setTimeout(()=>{
+ 							ref.backgroundMode.wakeUp();
+ 						},Number(dados.minutos)*60000);
  					});
+
 
  				}
  			})

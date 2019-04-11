@@ -1,8 +1,8 @@
 {
   "name": "cartola-concursos",
-  "app_id": "45f3d442",
-  "type": "ionic-angular",
   "integrations": {
     "cordova": {}
-  }
+  },
+  "type": "ionic-angular",
+  "pro_id": "45f3d442"
 }

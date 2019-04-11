@@ -17,7 +17,6 @@ import {ListMateriasPage} from '../pages/list-materias/list-materias';
 import {MinhasMateriaPage} from '../pages/minhas-materia/minhas-materia';
 import {EditMateriasPage} from '../pages/edit-materias/edit-materias';
 import { LocalNotifications } from '@ionic-native/local-notifications';
-import { Keyboard } from '@ionic-native/keyboard';
 import {RelatorioMateriaPage} from '../pages/relatorio-materia/relatorio-materia';
 import {DesempenhoPage} from "../pages/desempenho/desempenho";
 import {PerfilAdminPage} from "../pages/perfil-admin/perfil-admin";
@@ -30,6 +29,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {IntroPage} from "../pages/intro/intro";
 import {MateriaDescricaoPage} from "../pages/materia-descricao/materia-descricao";
 import { CodePush } from '@ionic-native/code-push';
+import { BackgroundMode } from '@ionic-native/background-mode';
 Pro.init('45f3d442', {
   appVersion: '1.0.0'
 })
@@ -115,9 +115,9 @@ export class MyErrorHandler implements ErrorHandler {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     FirebaseProvider,
     LocalNotifications,
-    Keyboard,
      OneSignal,
-     CodePush
+     CodePush,
+     BackgroundMode
   ]
 })
 export class AppModule {}

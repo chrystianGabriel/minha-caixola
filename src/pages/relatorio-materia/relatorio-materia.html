@@ -1,9 +1,16 @@
 <ion-header>
-	<ion-navbar color="dark">
-			<ion-col col-12 item-start>
+	<ion-navbar color="dark" hideBackButton>
+		<ion-row>
+			<ion-col col-2>
+				<button (click)="fecharModal()" ion-button color="dark" large style="border-radius: 0px!important"><ion-icon name="arrow-back"></ion-icon></button>
+			</ion-col>
+			<ion-col col-8 item-start>
 				<img src="logo_horizontal.png" width="80%">
-				<button ion-button color="caixola" style="margin-top:-50px;border-radius: 0px!important" small (click)="abrirTutorial()"><ion-icon name="md-bulb"></ion-icon></button>
 			</ion-col>	
+			<ion-col col-2>
+				<button ion-button color="caixola" style="margin-top:20px;border-radius: 0px!important" small (click)="abrirTutorial()"><ion-icon name="md-bulb"></ion-icon></button>
+			</ion-col>
+		</ion-row>
 	</ion-navbar>
 </ion-header>
 

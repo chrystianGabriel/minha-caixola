@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ToastController,ModalController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ToastController,ModalController,ViewController} from 'ionic-angular';
 import {FirebaseProvider} from '../../providers/firebase/firebase';
 import {MateriaDescricaoPage} from "../materia-descricao/materia-descricao";
 import {IntroPage} from "../intro/intro";
@@ -21,7 +21,7 @@ import {IntroPage} from "../intro/intro";
  	private nome_materia;
  	private cor;
  	private tempoTotal;
- 	constructor(public modalCtrl:ModalController,public database:FirebaseProvider,public navCtrl: NavController, public navParams: NavParams,public toast:ToastController) {
+ 	constructor(public viewCtrl:ViewController,public modalCtrl:ModalController,public database:FirebaseProvider,public navCtrl: NavController, public navParams: NavParams,public toast:ToastController) {
  		let aux = new Date()
  		this.data = aux.getFullYear()
  		if (aux.getDate() < 10){
@@ -86,6 +86,9 @@ import {IntroPage} from "../intro/intro";
  	abrirTutorial(){
      let modal = this.modalCtrl.create(IntroPage,{imgs:[{src:"t_relatorios_1.png"}]});
      modal.present();
+   }
+   fecharModal(){
+   		this.viewCtrl.dismiss();
    }
  	
 

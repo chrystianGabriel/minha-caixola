@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ViewController } from 'ionic-angular';
 
 /**
  * Generated class for the MateriaDescricaoPage page.
@@ -15,11 +15,13 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class MateriaDescricaoPage {
   private descricao;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public viewCtrl:ViewController,public navCtrl: NavController, public navParams: NavParams) {
   	this.descricao = this.navParams.get("descricao");
   	console.log(this.descricao);
   }
-
+ fecharModal(){
+       this.viewCtrl.dismiss();
+   }
  
 
 }

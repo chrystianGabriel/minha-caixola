@@ -2,198 +2,237 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,ToastController,PopoverController,ModalController,LoadingController,AlertController } from 'ionic-angular';
 import {FirebaseProvider} from '../../providers/firebase/firebase'
 import {ListMateriasPage} from '../list-materias/list-materias';
+import {HomePage} from '../home/home';
 
- declare var require:any;
- let md5 = require("js-md5");
- @IonicPage()
- @Component({
-   selector: 'page-horarios',
-   templateUrl: 'horarios.html',
- })
- export class HorariosPage {
+declare var require:any;
+let md5 = require("js-md5");
+@IonicPage()
+@Component({
+  selector: 'page-horarios',
+  templateUrl: 'horarios.html',
+})
+export class HorariosPage {
 
-   private dia_semana;
-   private array_materias;
-   private hora;
-   private minuto;
-   private revisoes;
-   constructor(public alertCtrl:AlertController,public loadCtrl:LoadingController,public modalCtrl:ModalController,public popoverCtrl:PopoverController,public toastCtrl:ToastController,public database:FirebaseProvider,public navCtrl: NavController, public navParams: NavParams) {
-     let dia = new Date();
-     this.dia_semana = dia.getDay()
-     this.revisoes = new Array()
+  private dia_semana;
+  private array_materias;
+  private hora;
+  private minuto;
+  private revisoes;
+  constructor(public alertCtrl:AlertController,public loadCtrl:LoadingController,public modalCtrl:ModalController,public popoverCtrl:PopoverController,public toastCtrl:ToastController,public database:FirebaseProvider,public navCtrl: NavController, public navParams: NavParams) {
+    let dia = new Date();
+    this.dia_semana = dia.getDay()
+    this.revisoes = new Array()
 
-   }
-   async ionViewDidEnter(){
-     this.preencherHorario()
-   }
+  }
+  async ionViewDidEnter(){
+    this.preencherHorario()
+  }
 
-   preencherCores(){
-     let cores:any = document.getElementsByClassName("cores");
-     let cards:any = document.getElementsByClassName("card");
-     for(let i = 0; i < this.array_materias.length;i++){
-       cores[i].style.color = this.array_materias[i].cor
-     }
-     for(let i = 0; i < this.array_materias.length;i++){
-       let hex1= this.array_materias[i].cor[1] + this.array_materias[i].cor[2]
-       let hex2 = this.array_materias[i].cor[3] + this.array_materias[i].cor[4]
-       let hex3 = this.array_materias[i].cor[5] + this.array_materias[i].cor[6]
-       cards[i].style.background =  "rgba(" + parseInt(hex1,16) + "," + parseInt(hex2,16) + "," + parseInt(hex3,16) + "," + "0.2)";
-     }
+  preencherCores(){
+    let cores:any = document.getElementsByClassName("cores");
+    let cards:any = document.getElementsByClassName("card");
+    for(let i = 0; i < this.array_materias.length;i++){
+      cores[i].style.color = this.array_materias[i].cor
+    }
+    for(let i = 0; i < this.array_materias.length;i++){
+      let hex1= this.array_materias[i].cor[1] + this.array_materias[i].cor[2]
+      let hex2 = this.array_materias[i].cor[3] + this.array_materias[i].cor[4]
+      let hex3 = this.array_materias[i].cor[5] + this.array_materias[i].cor[6]
+      cards[i].style.background =  "rgba(" + parseInt(hex1,16) + "," + parseInt(hex2,16) + "," + parseInt(hex3,16) + "," + "0.2)";
+    }
 
-   }
-   async mudarDia(){
-     this.preencherHorario()
-     
-   }
-   async removerMateria(materia){
-     let deletar = confirm("Deseja realmente remover essa materia?")
-     if(deletar){
-       await this.database.deletarMateriaDia(this.dia_semana,md5(materia))
-       this.array_materias = await this.database.getMateriasDiaSemana(this.dia_semana)
-       let tempo = 10;
-       for(let  i = 0; i < this.array_materias.length;i++){
-         let nivel = this.array_materias[i].nivel;
-         console.log(nivel)
-         if(nivel == 1){
-           console.log(tempo*0.6)
-           this.array_materias[i].meta = (tempo*0.6).toFixed(2);
-         }else if(nivel == 2){
-           this.array_materias[i].meta = (tempo*0.2).toFixed(2);
-         }else if(nivel == 3){
-           this.array_materias[i].meta = (tempo*0.1).toFixed(2);
-         }
+  }
+  async mudarDia(){
+    this.preencherHorario()
 
-       }
+  }
+  async removerMateria(materia){
+    let deletar = confirm("Deseja realmente remover essa materia?")
+    if(deletar){
+      await this.database.deletarMateriaDia(this.dia_semana,md5(materia))
+      this.array_materias = await this.database.getMateriasDiaSemana(this.dia_semana)
+      let tempo = 10;
+      for(let  i = 0; i < this.array_materias.length;i++){
+        let nivel = this.array_materias[i].nivel;
+        if(nivel == 1){
+          this.array_materias[i].meta = (tempo*0.6).toFixed(2);
+        }else if(nivel == 2){
+          this.array_materias[i].meta = (tempo*0.2).toFixed(2);
+        }else if(nivel == 3){
+          this.array_materias[i].meta = (tempo*0.1).toFixed(2);
+        }
 
-     }
-   }
-   adicionarMateria(){
+      }
 
-     this.navCtrl.setRoot(ListMateriasPage,{dia:this.dia_semana});
-   }
-   async preencherHorario(){
-     this.revisoes = new Array();
-     let dia_atual = this.getDatasSemana();
-     this.array_materias = await this.database.getMateriasDiaSemana(this.dia_semana)
-     let ref = this;
-     let load = this.loadCtrl.create({content:"CARREGANDO INFORMAÇÕES, POR FAVOR, AGUARDE!"})
-     load.present()
-     if(this.navParams.get('dia') != undefined){
-       this.dia_semana = this.navParams.get('dia');
-     }
+    }
+  }
+  adicionarMateria(){
 
-     if(this.array_materias){
-       for(let  i = 0; i < this.array_materias.length;i++){
-         let revisoes:any = await this.database.getRevisoes(this.array_materias[i].nome)
-         
-         for(let key in revisoes){
-           console.log(dia_atual)
-           if(revisoes[key].revisao24h == dia_atual[this.dia_semana]){
-             this.revisoes.push({materia: this.array_materias[i].nome,tema:revisoes[key].tema,tempo:"00:30:00"})
-           }else if(revisoes[key].revisao7d == dia_atual[this.dia_semana]){
-             this.revisoes.push({materia: this.array_materias[i].nome,tema:revisoes[key].tema,tempo:"00:30:00"})
-           }else if(revisoes[key].revisao30d == dia_atual[this.dia_semana]){
-             this.revisoes.push({materia: this.array_materias[i].nome,tema:revisoes[key].tema,tempo:"00:30:00"})
-           }
-         }
-       }
-       let tempo:any = await this.database.getMetaSemanal();
-       if(tempo){
-         this.calcularMeta(tempo)
-       }else{
-         confirm("É nescessario cadastrar uma meta semanal!")
-         if(!tempo){
-           load.dismiss()
-           let ref = this;
-           tempo = "00:00:00";
-           console.log(tempo)
-           tempo = tempo.split(":")
-           let horas = tempo[0]
-           let minutos = tempo[1]
-           let alertOp:any = {
-             title:"META SEMANAL",
-             message:"DIGITE A QUANTIDADE DE HORAS E MINUTOS QUE SESEJA ESTUDAR POR SEMANA!",
-             inputs: [{
-               name:'horas',
-               placeholder:horas + " H",
-               type:"number"
-             },
-             {
-               name:'minutos',
-               placeholder:minutos + " M",
-               type:"number"
-             }
-             ],
-             buttons: [
-             {
+    this.navCtrl.setRoot(ListMateriasPage,{dia:this.dia_semana});
+  }
+  async preencherHorario(){
+    this.revisoes = new Array();
+    let dia_atual = this.getDatasSemana();
+    this.array_materias = await this.database.getMateriasDiaSemana(this.dia_semana)
+    let ref = this;
+    let load = this.loadCtrl.create({content:"CARREGANDO INFORMAÇÕES, POR FAVOR, AGUARDE!"})
+    load.present()
+    if(this.navParams.get('dia') != undefined){
+      this.dia_semana = this.navParams.get('dia');
+    }
 
-               text: 'Salvar',
-               handler: async data => {
-                 console.log(data)
-                 if(parseInt(data.horas) < 0){
-                   let alertAux = this.alertCtrl.create({
-                     title:"ATENÇÃO",
-                     message:"AS HORAS DEVEM SER MAIOR QUE 0"
-                   })
-                   alertAux.present()
+    if(this.array_materias){
+      for(let  i = 0; i < this.array_materias.length;i++){
+        let revisoes:any = await this.database.getRevisoes(this.array_materias[i].nome)
 
-                   return;
-                 }
-                 if(parseInt(data.minutos) < 0){
-                   let alertAux = this.alertCtrl.create({
-                     title:"ATENÇÃO",
-                     message:"OS MINUTOS INSERIDOS DEVEM SER MAIORES QUE 0"
-                   })
-                   alertAux.present()
+        for(let key in revisoes){
+          console.log(dia_atual)
+          if(revisoes[key].revisao24h == dia_atual[this.dia_semana]){
+            this.revisoes.push({materia: this.array_materias[i].nome,tema:revisoes[key].tema,tempo:"00:30:00"})
+          }else if(revisoes[key].revisao7d == dia_atual[this.dia_semana]){
+            this.revisoes.push({materia: this.array_materias[i].nome,tema:revisoes[key].tema,tempo:"00:30:00"})
+          }else if(revisoes[key].revisao30d == dia_atual[this.dia_semana]){
+            this.revisoes.push({materia: this.array_materias[i].nome,tema:revisoes[key].tema,tempo:"00:30:00"})
+          }
+        }
+      }
+      let tempo:any = await this.database.getMetaSemanal();
+      if(tempo){
+        this.calcularMeta(tempo)
+      }else{
+        confirm("É nescessario cadastrar uma meta semanal!")
+        if(!tempo){
+          load.dismiss()
+          let ref = this;
+          tempo = "00:00:00";
+          console.log(tempo)
+          tempo = tempo.split(":")
+          let horas = tempo[0]
+          let minutos = tempo[1]
+          let alertOp:any = {
+            title:"META SEMANAL",
+            message:"DIGITE A QUANTIDADE DE HORAS E MINUTOS QUE SESEJA ESTUDAR POR SEMANA!",
+            enableBackdropDismiss: false,
+            inputs: [{
+              name:'horas',
+              placeholder:horas + " H",
+              type:"number",
+              required:true
+            },
+            {
+              name:'minutos',
+              placeholder:minutos + " M",
+              type:"number",
+              required:true
+            }
+            ],
+            buttons: [
+            {
+              text: 'Salvar',
+              handler: async data => {
+                if(parseInt(data.horas) < 0){
+                  let ox = this.alertCtrl.create({
+                    title:"ATENÇÃO",
+                    message:"AS HORAS DEVEM SER MAIOR QUE 0",
+                    buttons: ['Dismiss']
+                  })
+                  ox.present()
+                  ox.onDidDismiss(()=>{
+                    let alertAux = this.alertCtrl.create(alertOp)
+                    alertAux.present()
+                    alertAux.onDidDismiss(()=>{
+                      console.log(tempo[0])
+                      ref.calcularMeta(tempo);
+                    })
+                  })
+                  return;
+                }
+                if(parseInt(data.minutos) < 0){
+                  let ox = this.alertCtrl.create({
+                    title:"ATENÇÃO",
+                    message:"OS MINUTOS INSERIDOS DEVEM SER MAIORES QUE 0",
+                    buttons: ['Dismiss']
+                  })
+                  ox.present()
+                  ox.onDidDismiss(()=>{
+                    let alertAux = this.alertCtrl.create(alertOp)
+                    alertAux.present()
+                    alertAux.onDidDismiss(()=>{
+                      console.log(tempo[0])
+                      ref.calcularMeta(tempo);
+                    })
+                  })
+                  return;
+                }
+                if(parseInt(data.minutos) > 59){
+                  let ox = this.alertCtrl.create({
+                    title:"ATENÇÃO",
+                    message:"OS MINUTOS INSERIDOS DEVEM SER MENORES QUE 60",
+                    buttons: ['Dismiss']
+                  })
+                  ox.present()
+                  ox.onDidDismiss(()=>{
+                    let alertAux = this.alertCtrl.create(alertOp)
+                    alertAux.present()
+                    alertAux.onDidDismiss(()=>{
+                      console.log(tempo[0])
+                      ref.calcularMeta(tempo);
+                    })
+                  })
+                  return;
+                }
+                if(data.horas != ""){
+                  data.minutos = (data.minutos == ""? "00":data.minutos)
+                  await ref.database.cadastrarMetaSemanal(data.horas,data.minutos)
+                  ref.calcularMeta(tempo);
+                  return;
+                }else{
+                  let ox = this.alertCtrl.create({
+                    title:"ATENÇÃO",
+                    message:"É NESCESSARIO PREENCHER OS CAMPOS!",
+                    buttons: ['Dismiss']
+                  })
+                  ox.present()
+                  ox.onDidDismiss(()=>{
+                    let alertAux = this.alertCtrl.create(alertOp)
+                    alertAux.present()
+                    alertAux.onDidDismiss(()=>{
+                      console.log(tempo[0])
+                      ref.calcularMeta(tempo);
+                    })
+                  })
+                  return;
+                }
 
-                   return;
-                 }
-                 if(parseInt(data.minutos) > 59){
-                   let alertAux = this.alertCtrl.create({
-                     title:"ATENÇÃO",
-                     message:"OS MINUTOS INSERIDOS DEVEM SER MENORES QUE 60"
-                   })
-                   alertAux.present()
 
-                   return;
-                 }
-                 if(data.horas != ""){
-                   data.minutos = (data.minutos == ""? "00":data.minutos)
-                   await ref.database.cadastrarMetaSemanal(data.horas,data.minutos)
-                 }
+              }
 
-
-               }
-
-             },
-             {
-               text: 'Cancelar',
-               role: 'cancel' 
-             }
-             ],
-             cssClass:"meta"
-           }
-           let alertAux = this.alertCtrl.create(alertOp)
-           alertAux.present()
-           alertAux.onDidDismiss(()=>{
-             ref.calcularMeta(tempo);
+            },
+            ],
+            cssClass:"meta"
+          }
+          let alertAux = this.alertCtrl.create(alertOp)
+          alertAux.present()
+          alertAux.onDidDismiss(()=>{
+            console.log(tempo[0])
+             //
            })
-         }
+        }
 
-       }
-       load.dismiss();
-     }else{
-       load.dismiss()
-     }
-     
-
+      }
+      load.dismiss();
+    }else{
+      load.dismiss()
+    }
 
 
-   }
 
 
-   async calcularMeta(tempo){
-   let totalQuestoes:any = 0;
+  }
+
+
+  async calcularMeta(tempo){
+    let totalQuestoes:any = 0;
     for(let  i = 0; i < this.array_materias.length;i++){
       totalQuestoes += Number(this.array_materias[i].questoes)*Number(this.array_materias[i].peso);
     }
@@ -217,8 +256,8 @@ import {ListMateriasPage} from '../list-materias/list-materias';
 
       this.array_materias[i].meta = ((horas < 10) ? "0" + horas:horas) + ":" + ((minutos < 10) ? "0" + minutos.toFixed(0):minutos.toFixed(0)) + ":00"
     }
-   }
-   getDatasSemana(){
+  }
+  getDatasSemana(){
     let dia = new Date().getDate() + (6 - new Date().getDay())
     console.log(dia)
     let mes = new Date().getMonth() + 1;
@@ -262,4 +301,4 @@ import {ListMateriasPage} from '../list-materias/list-materias';
     }
   }
 
- }
+}

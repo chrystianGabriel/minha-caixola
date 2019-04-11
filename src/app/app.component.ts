@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Platform,NavController,AlertController,ModalController} from 'ionic-angular';
-import { Keyboard } from '@ionic-native/keyboard';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {LoginPage} from '../pages/login/login'
@@ -33,12 +32,12 @@ export class MyApp {
   gravar_estudo = GravarEstudosPage
   desempenho = DesempenhoPage
 
-  constructor(public menu:MenuController,private codePush: CodePush,private modalCtrl:ModalController,private database:FirebaseProvider,private alertCtrl:AlertController,keyboard: Keyboard,platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  constructor(public menu:MenuController,private codePush: CodePush,private modalCtrl:ModalController,private database:FirebaseProvider,private alertCtrl:AlertController,platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
       this.menu.swipeEnable(false,"menu")
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      keyboard.disableScroll(true);
+      // keyboard.disableScroll(true);ZZZZZ
       statusBar.styleDefault();
       splashScreen.hide();
       this.database.receberMensagem();

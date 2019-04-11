@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.caixola.app" version="0.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.caixola.app" version="1.1.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Minha Caixola</name>
     <description />
     <author email="chrystiangabriel1@hotmail.com" href="http://ionicframework.com/">Chrystian Gabriel</author>
@@ -12,6 +12,7 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <preference name="ScrollEnabled" value="false" />
+    <preference name="loadUrlTimeoutValue" value="700000" />
     <preference name="android-minSdkVersion" value="16" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="SplashMaintainAspectRatio" value="true" />
@@ -83,22 +84,22 @@
         <preference name="CodePushDeploymentKey" value="VSJw6qcDzpEPENofHP2wIg1HqpJ-f7cc1f6e-06c2-4003-b275-7552fe066461" />
     </platform>
     <allow-navigation href="http://192.168.1.14:8100" />
-    <plugin name="cordova-plugin-device" spec="^2.0.1" />
-    <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
-    <plugin name="cordova-plugin-ionic-webview" spec="^1.1.16" />
+    <allow-navigation href="http://192.168.25.7:8100" />
+    <allow-navigation href="http://192.168.1.10:8100" />
+    <engine name="ios" spec="^4.5.5" />
+    <plugin name="cordova-plugin-device" spec="^2.0.2" />
+    <plugin name="cordova-plugin-ionic-webview" spec="^1.2.1" />
     <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
     <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
-    <plugin name="cordova-plugin-statusbar" spec="^2.4.1" />
+    <plugin name="cordova-plugin-statusbar" spec="^2.4.2" />
     <plugin name="cordova-plugin-local-notification" spec="^0.9.0-beta.2" />
     <plugin name="cordova-plugin-background-mode" spec="^0.7.2" />
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
-    <allow-navigation href="http://192.168.25.7:8100" />
-    <plugin name="phonegap-plugin-push" spec="^2.2.2">
+    <plugin name="onesignal-cordova-plugin" spec="^2.4.4" />
+    <plugin name="cordova-plugin-advanced-http" spec="^1.11.1" />
+    <plugin name="phonegap-plugin-push" spec="^2.2.3">
         <variable name="SENDER_ID" value="79977732972" />
     </plugin>
-    <allow-navigation href="http://192.168.1.10:8100" />
-    <plugin name="onesignal-cordova-plugin" spec="^2.3.3" />
-    <plugin name="cordova-plugin-advanced-http" spec="^1.11.1" />
-    <engine name="android" spec="7.0.0" />
-    <engine name="ios" spec="4.5.4" />
+    <plugin name="cordova-plugin-ionic-keyboard" spec="2.1.3" />
+    <plugin name="cordova-plugin-file" spec="^6.0.1" />
 </widget>

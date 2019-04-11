@@ -85,5 +85,6 @@ import {IntroPage} from "../intro/intro";
      modal.present();
    }
   
+  
 
  }
