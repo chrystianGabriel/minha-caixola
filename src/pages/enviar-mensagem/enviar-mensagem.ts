@@ -19,8 +19,7 @@ import {FirebaseProvider} from "../../providers/firebase/firebase";
  	private titulo;
  	constructor(public modalCtrl:ModalController,public database:FirebaseProvider,public navCtrl: NavController, public navParams: NavParams) {
  	}
-
- 	enviarMensagem(){
+/*enviarMensagem(){
  		if(this.mensagem != ""){
  			
  			let not = confirm("Deseja enviar a notificação para todos os usuarios?")
@@ -30,6 +29,6 @@ import {FirebaseProvider} from "../../providers/firebase/firebase";
  		}else{
  			alert("É NECESSÁRIO DIGITAR UMA MENSAGEM")
  		}
- 	}
+ 	}*/
 
  }

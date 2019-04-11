@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { OneSignal } from '@ionic-native/onesignal';
 import { Http,Headers } from '@angular/http';
 import {AlertController} from 'ionic-angular';
 declare var require:any;
@@ -7,7 +6,7 @@ declare var firebase:any;
 let md5 = require("js-md5");
 @Injectable()
 export class FirebaseProvider {
-  constructor(private alertCtrl:AlertController,private http:Http,private oneSignal:OneSignal) {
+  constructor(private alertCtrl:AlertController,private http:Http) {
 
   }
   getUsuario(){
@@ -504,7 +503,7 @@ export class FirebaseProvider {
       })
     })
   }
-  receberMensagem(){
+ /* receberMensagem(){
     this.oneSignal.startInit('1792b60b-ef6b-4be2-9c89-60dc221851aa', '79977732972');
 
     this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.Notification);
@@ -521,8 +520,8 @@ export class FirebaseProvider {
     });
 
     this.oneSignal.endInit();
-  }
-  enviarMensagem(mensagem){
+  }*/
+  /*enviarMensagem(mensagem){
     this.oneSignal.registerForPushNotifications()
     let headers:Headers = new Headers();
     headers.append("Content-Type","application/json")
@@ -538,7 +537,7 @@ export class FirebaseProvider {
     .subscribe((data)=>{
       console.log(data)
     });
-  }
+  }*/
   equeciMinhaSenha(email){
     return new Promise((sucesso,erro)=>{
       firebase.auth().sendPasswordResetEmail(email)

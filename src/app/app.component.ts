@@ -40,7 +40,7 @@ export class MyApp {
       // keyboard.disableScroll(true);ZZZZZ
       statusBar.styleDefault();
       splashScreen.hide();
-      this.database.receberMensagem();
+      //this.database.receberMensagem();
       this.executarCodePush();
       
 

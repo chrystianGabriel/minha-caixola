@@ -16,6 +16,7 @@
     "ionic_sass": "./config/sass.config.js"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@angular/animations": "5.2.11",
     "@angular/common": "5.0.3",
     "@angular/compiler": "5.0.3",
@@ -33,9 +34,30 @@
     "@ionic-native/onesignal": "^4.15.0",
     "@ionic-native/splash-screen": "4.4.0",
     "@ionic-native/status-bar": "4.4.0",
+=======
+    "@angular/animations": "^6.0.6",
+    "@angular/common": "^6.0.6",
+    "@angular/compiler": "^6.0.6",
+    "@angular/compiler-cli": "^6.0.6",
+    "@angular/core": "^6.0.6",
+    "@angular/forms": "^6.0.6",
+    "@angular/http": "^6.0.6",
+    "@angular/platform-browser": "^6.0.6",
+    "@angular/platform-browser-dynamic": "^6.0.6",
+    "@ionic-native/background-mode": "^4.8.0",
+    "@ionic-native/code-push": "^4.8.0",
+    "@ionic-native/core": "^4.8.0",
+    "@ionic-native/http": "^4.8.0",
+    "@ionic-native/keyboard": "^4.8.0",
+    "@ionic-native/local-notifications": "^4.8.0",
+    "@ionic-native/onesignal": "^4.8.0",
+    "@ionic-native/splash-screen": "^4.8.0",
+    "@ionic-native/status-bar": "^4.8.0",
+>>>>>>> e4e7743a0c85749719472ac08a20b3e89c908b16
     "@ionic/cloud-angular": "^0.12.0",
     "@ionic/pro": "^1.1.0",
     "@ionic/storage": "2.1.3",
+<<<<<<< HEAD
     "angular-intro.js": "^3.4.0",
     "chart.js": "^2.7.3",
     "code-push": "^2.0.6",
@@ -53,6 +75,25 @@
     "cordova-plugin-file-transfer": "^1.6.3",
     "cordova-plugin-ionic": "^4.2.0",
     "cordova-plugin-ionic-keyboard": "2.1.3",
+=======
+    "angular-intro.js": "^3.3.0",
+    "chart.js": "^2.7.2",
+    "code-push": "^2.0.5",
+    "cordova": "^8.0.0",
+    "cordova-android": "^7.1.0",
+    "cordova-ios": "4.5.4",
+    "cordova-plugin-advanced-http": "^1.11.1",
+    "cordova-plugin-appcenter-analytics": "^0.1.5",
+    "cordova-plugin-appcenter-shared": "^0.1.5",
+    "cordova-plugin-background-mode": "^0.7.2",
+    "cordova-plugin-badge": "^0.8.7",
+    "cordova-plugin-code-push": "^1.11.11",
+    "cordova-plugin-device": "^2.0.2",
+    "cordova-plugin-dialogs": "^2.0.1",
+    "cordova-plugin-file": "^6.0.1",
+    "cordova-plugin-ionic": "^4.1.7",
+    "cordova-plugin-ionic-keyboard": "^2.1.2",
+>>>>>>> e4e7743a0c85749719472ac08a20b3e89c908b16
     "cordova-plugin-ionic-webview": "^1.2.1",
     "cordova-plugin-local-notification": "^0.9.0-beta.2",
     "cordova-plugin-splashscreen": "^5.0.2",
@@ -60,6 +101,7 @@
     "cordova-plugin-whitelist": "^1.3.3",
     "emailjs": "^2.2.0",
     "font-awesome": "^4.7.0",
+<<<<<<< HEAD
     "install": "^0.11.2",
     "intro.js": "^2.9.3",
     "ionic-angular": "3.9.2",
@@ -77,6 +119,24 @@
   },
   "devDependencies": {
     "@ionic/app-scripts": "^3.2.0"
+=======
+    "install": "^0.11.1",
+    "intro.js": "^2.9.3",
+    "ionic-angular": "3.9.2",
+    "ionic-plugin-keyboard": "^2.2.1",
+    "ionic-tooltips": "^2.0.1",
+    "ionicons": "^4.2.1",
+    "js-md5": "^0.7.3",
+    "rxjs": "^6.2.1",
+    "rxjs-compat": "^6.2.1",
+    "sw-toolbox": "3.6.0",
+    "zone.js": "^0.8.26"
+  },
+  "devDependencies": {
+    "@ionic/app-scripts": "^3.1.10",
+    "npm-update-all": "^1.0.1",
+    "typescript": "^2.9.2"
+>>>>>>> e4e7743a0c85749719472ac08a20b3e89c908b16
   },
   "description": "An Ionic project",
   "cordova": {
@@ -93,9 +153,13 @@
       "cordova-plugin-advanced-http": {},
       "phonegap-plugin-push": {
         "SENDER_ID": "79977732972"
+<<<<<<< HEAD
       },
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-file": {}
+=======
+      }
+>>>>>>> e4e7743a0c85749719472ac08a20b3e89c908b16
     },
     "platforms": [
       "ios"
